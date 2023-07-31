@@ -1,20 +1,63 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content class="ion-padding" *ngIf="currencyApiResponse$ | async else loading">
+  <ion-row>
+    <ion-col offsetLg="3" sizeLg="6" size="12" class="ion-no-padding">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Currency Converter</ion-card-title>
+          <ion-card-subtitle>Complete the form and hit the 'Get Amount' button!</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <form [formGroup]="currencyForm">
+            <ion-item>
+              <ion-input label="Amount: " name="amount: " type="text" placeholder="Type Amount"
+                class="right-align-input" formControlName="amount"></ion-input>
+            </ion-item>
+            <ion-item
+              *ngIf="currencyForm.controls['amount'].invalid && (currencyForm.controls['amount'].dirty || currencyForm.controls['amount'].touched)">
+              <ion-note slot="end">
+                You need to enter a number greater than 0
+              </ion-note>
+            </ion-item>
+            <ion-item>
+              <ion-select label="From: " name="from" placeholder="Select Currency" formControlName="from">
+                <ion-select-option [value]="'EUR'">EUR</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-select label="To: " name="to" placeholder="Select Currency" formControlName="to">
+                <ion-select-option *ngFor="let currency of currencyRates$ | async"
+                  [value]="currency.currencyCode">{{currency.currencyCode}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-button (click)="generate()" expand="block" fill="clear" shape="round" [disabled]="!currencyForm.valid">
+              Get Amount
+            </ion-button>
+          </form>
+        </ion-card-content>
+      </ion-card>
+      <ion-row *ngIf="result">
+        <ion-col offsetLg="3" sizeLg="6" size="12">
+          <ion-card>
+            <ion-card-content>
+              <ion-item>
+                <ion-label>Result:</ion-label>
+                <p>
+                  {{result | currency : currencyForm.controls['to'].value}}
+                </p>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
 </ion-content>
+
+<ng-template #loading>
+  <ion-content class="ion-padding">
+    <ion-spinner></ion-spinner>
+  </ion-content>
+</ng-template>
