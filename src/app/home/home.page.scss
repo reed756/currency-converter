@@ -1,3 +1,26 @@
 .right-align-input {
   text-align: right; /* Set text alignment to right */
 }
+
+.row_content {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+ion-item:nth-child(1) {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+ion-item:nth-child(3) {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.both_item {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}

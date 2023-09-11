@@ -16,7 +16,7 @@
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
-@import '@ionic/angular/css/display.css';
+@import "@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
@@ -24,3 +24,43 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.turqouise {
+  color: #73eedc;
+  --color: #73eedc;
+}
+
+.turquoise_bg {
+  background: #73eedc;
+  --background: #73eedc;
+}
+
+.light_blue {
+  color: #73c2be;
+  --color: #73c2be;
+}
+
+.light_blue_bg {
+  background: #73c2be;
+  --background: #73c2be;
+}
+
+.purple {
+  color: #5f1a37;
+  --color: #5f1a37;
+}
+
+.purple_bg {
+  // background: #5f1a37;
+  --background: #5f1a37;
+}
+
+.black {
+  color: #04030f;
+  --color: #04030f;
+}
+
+.black_bg {
+  background: #04030f;
+  --background: #04030f;
+}

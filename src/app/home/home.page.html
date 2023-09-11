@@ -2,49 +2,54 @@
 </ion-header>
 
 <ion-content class="ion-padding" *ngIf="currencyApiResponse$ | async else loading">
-  <ion-row>
+  <ng-particles [id]="id" [url]="particlesUrl" [particlesInit]="particlesInit"
+    (particlesLoaded)="particlesLoaded($event)">
+  </ng-particles>
+  <ion-row class="row_content">
     <ion-col offsetLg="3" sizeLg="6" size="12" class="ion-no-padding">
-      <ion-card>
+      <ion-card class="turquoise_bg">
         <ion-card-header>
-          <ion-card-title>Currency Converter</ion-card-title>
-          <ion-card-subtitle>Complete the form and hit the 'Get Amount' button!</ion-card-subtitle>
+          <ion-card-title class="black">Currency Converter</ion-card-title>
+          <ion-card-subtitle class="purple">Complete the form and hit the 'Get Amount' button!</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
           <form [formGroup]="currencyForm">
-            <ion-item>
+            <ion-item class="light_blue_bg">
               <ion-input label="Amount: " name="amount: " type="text" placeholder="Type Amount"
-                class="right-align-input" formControlName="amount"></ion-input>
+                class="right-align-input black" formControlName="amount"></ion-input>
             </ion-item>
             <ion-item
-              *ngIf="currencyForm.controls['amount'].invalid && (currencyForm.controls['amount'].dirty || currencyForm.controls['amount'].touched)">
+              *ngIf="currencyForm.controls['amount'].invalid && (currencyForm.controls['amount'].dirty || currencyForm.controls['amount'].touched)"
+              class="light_blue_bg">
               <ion-note slot="end">
                 You need to enter a number greater than 0
               </ion-note>
             </ion-item>
-            <ion-item>
-              <ion-select label="From: " name="from" placeholder="Select Currency" formControlName="from">
+            <ion-item class="light_blue_bg">
+              <ion-select label="From: " name="from" placeholder="Select Currency" formControlName="from" class="black">
                 <ion-select-option [value]="'EUR'">EUR</ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-item>
+            <ion-item class="light_blue_bg">
               <ion-select label="To: " name="to" placeholder="Select Currency" formControlName="to">
                 <ion-select-option *ngFor="let currency of currencyRates$ | async"
                   [value]="currency.currencyCode">{{currency.currencyCode}}</ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-button (click)="generate()" expand="block" fill="clear" shape="round" [disabled]="!currencyForm.valid">
+            <ion-button (click)="generate()" expand="block" fill="clear" shape="round" [disabled]="!currencyForm.valid"
+              class="purple_bg turqouise ion-margin-top">
               Get Amount
             </ion-button>
           </form>
         </ion-card-content>
       </ion-card>
-      <ion-row *ngIf="result">
-        <ion-col offsetLg="3" sizeLg="6" size="12">
-          <ion-card>
+      <ion-row @myInsertRemoveTrigger *ngIf="result">
+        <ion-col class="ion-no-padding">
+          <ion-card class="turquoise_bg">
             <ion-card-content>
-              <ion-item>
-                <ion-label>Result:</ion-label>
-                <p>
+              <ion-item class="light_blue_bg both_item">
+                <ion-label class="black">Result:</ion-label>
+                <p class="black">
                   {{result | currency : currencyForm.controls['to'].value}}
                 </p>
               </ion-item>
