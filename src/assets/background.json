@@ -125,36 +125,20 @@
       "value": 0
     },
     "shape": {
-      "character": [
-        {
-          "fill": true,
-          "font": "Font Awesome 5 Brands",
-          "style": "",
-          "value": ["\uf155"],
-          "weight": "400"
-        },
-        {
-          "fill": true,
-          "font": "Font Awesome 5 Free",
-          "style": "",
-          "value": ["\uf155"],
-          "weight": "900"
-        }
-      ],
-      "image": {
-        "height": 100,
-        "replaceColor": true,
-        "src": "https://particles.js.org/images/github.svg",
-        "width": 100
+      "type": "character",
+      "character": {
+        "value": "€",
+        "font": "Poppins",
+        "style": "normal",
+        "weight": "500"
       },
-      "polygon": {
-        "sides": 5
+      "fill": {
+        "color": "#ffffff"
       },
       "stroke": {
-        "color": "#ffffff",
-        "width": 1
-      },
-      "type": "char"
+        "color": "#000000",
+        "width": 0
+      }
     },
     "size": {
       "animation": {
