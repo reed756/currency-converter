@@ -9,7 +9,7 @@ import CurrencyApiResponse from 'src/app/models/currency-api-response.model';
 })
 export class CurrencyService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private currencyApiResponse$ = new BehaviorSubject<CurrencyApiResponse>({
     success: false,
@@ -27,7 +27,7 @@ export class CurrencyService {
 
 
   public initGetCurrencyApiResponse() {
-    this.http.get(`http://data.fixer.io/api/latest?access_key=${environment.access_key}&base=EUR&symbols=USD,AUD,CAD,PLN,MXN&format=1`).subscribe(res => {
+    this.http.get(`https://data.fixer.io/api/latest?access_key=${environment.access_key}&base=EUR&symbols=USD,AUD,CAD,PLN,MXN&format=1`).subscribe(res => {
       this.currencyApiResponse$.next(res as CurrencyApiResponse);
     });
   }
